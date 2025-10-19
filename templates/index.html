@@ -1,0 +1,36 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+<main>
+    <h1 class="mt-4">URL Shortner</h1>
+    <div class="container mt-2 p-3 mx-auto col-md-8">
+
+    <!-- url form -->
+    <section class="m-3 p-3 color text-center"> 
+        <form id="link-form" method="POST" action="{% url 'create' %}">
+            {% csrf_token %} 
+            <label for="input">Link/URL: </label> <br>
+            <input type="text" id="link" name="link" class="form-control" placeholder="Enter your URL here">
+            <script>
+                if ("{{ inp }}"){
+                    document.getElementById("link").value = "{{ inp }}";
+                }             
+            </script>
+            <input type="submit" value="Submit" class="btn btn-info mt-3">
+        </form>
+    </section>
+
+    <!-- short output -->
+    {% if short_url %}
+    <section class="m-3 p-3 color text-center">
+        <h5>Your Shortened URL:</h5>
+        <a href="{{ short_url }}" id="short_url">{{ short_url }}</a>
+    </section>
+    {% endif %}
+
+</div>
+</main>
+
+
+{% endblock %}
